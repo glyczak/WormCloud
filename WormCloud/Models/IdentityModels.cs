@@ -22,6 +22,7 @@ namespace WormCloud.Models
     {
         public DbSet<Sample> Samples { get; set; }
         public DbSet<Strain> Strains { get; set; }
+        public DbSet<Species> Species { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

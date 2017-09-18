@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WormCloud.Models;
+using WormCloud.ViewModels;
 
 namespace WormCloud.Controllers
 {
@@ -21,8 +22,14 @@ namespace WormCloud.Controllers
             _context.Dispose();
         }
 
+        public ViewResult New()
+        {
+            var viewModel = new StrainFormViewModel(_context.Species.ToList());
+            return View("StrainForm", viewModel);
+        }
+
         // GET /strains
-        public ActionResult Index()
+        public ViewResult Index()
         {
             var strains = _context.Strains.ToList();
             return View(strains);
