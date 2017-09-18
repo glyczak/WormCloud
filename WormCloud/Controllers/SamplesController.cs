@@ -24,7 +24,8 @@ namespace WormCloud.Controllers
         // GET /samples
         public ActionResult Index()
         {
-            return View();
+            var samples = _context.Samples.ToList();
+            return View(samples);
         }
     }
 }

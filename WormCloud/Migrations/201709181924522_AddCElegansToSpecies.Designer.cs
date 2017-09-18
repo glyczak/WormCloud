@@ -7,13 +7,13 @@ namespace WormCloud.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddDefaultSpeciesCElegansAndBacteria : IMigrationMetadata
+    public sealed partial class AddCElegansToSpecies : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDefaultSpeciesCElegansAndBacteria));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddCElegansToSpecies));
         
         string IMigrationMetadata.Id
         {
-            get { return "201709181126017_AddDefaultSpeciesCElegansAndBacteria"; }
+            get { return "201709181924522_AddCElegansToSpecies"; }
         }
         
         string IMigrationMetadata.Source

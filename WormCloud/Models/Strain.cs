@@ -13,6 +13,7 @@ namespace WormCloud.Models
 
         public Species Species { get; set; }
 
+        [Display(Name = "Species")]
         public int SpeciesId { get; set; }
 
         [Required]

@@ -221,9 +221,9 @@
     <Compile Include="Migrations\201709172218141_AddedSpeciesStrainAndSampleModels.Designer.cs">
       <DependentUpon>201709172218141_AddedSpeciesStrainAndSampleModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709181126017_AddDefaultSpeciesCElegans.cs" />
-    <Compile Include="Migrations\201709181126017_AddDefaultSpeciesCElegans.Designer.cs">
-      <DependentUpon>201709181126017_AddDefaultSpeciesCElegans.cs</DependentUpon>
+    <Compile Include="Migrations\201709181924522_AddCElegansToSpecies.cs" />
+    <Compile Include="Migrations\201709181924522_AddCElegansToSpecies.Designer.cs">
+      <DependentUpon>201709181924522_AddCElegansToSpecies.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -234,6 +234,7 @@
     <Compile Include="Models\Strain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\StrainFormViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-spacelab.css" />
@@ -537,6 +538,7 @@
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Strains\Index.cshtml" />
     <Content Include="Views\Samples\Index.cshtml" />
+    <Content Include="Views\Strains\StrainForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -557,8 +559,8 @@
     <EmbeddedResource Include="Migrations\201709172218141_AddedSpeciesStrainAndSampleModels.resx">
       <DependentUpon>201709172218141_AddedSpeciesStrainAndSampleModels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709181126017_AddDefaultSpeciesCElegans.resx">
-      <DependentUpon>201709181126017_AddDefaultSpeciesCElegans.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709181924522_AddCElegansToSpecies.resx">
+      <DependentUpon>201709181924522_AddCElegansToSpecies.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

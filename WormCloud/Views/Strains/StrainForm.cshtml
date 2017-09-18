@@ -1,0 +1,32 @@
+﻿@model WormCloud.ViewModels.StrainFormViewModel
+@{
+    ViewBag.Title = (Model.Strain.Id == 0) ? "New Strain" : Model.Strain.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Strains"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Strain.SpeciesId)
+        @Html.DropDownListFor(m => m.Strain.SpeciesId, new SelectList(Model.Species, "Id", "Name"),
+            "Select Species", new {@class = "form-control"})
+        @Html.ValidationMessageFor(m => m.Strain.SpeciesId)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Strain.Name)
+        @Html.TextBoxFor(m => m.Strain.Name, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.Strain.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Strain.Genotype)
+        @Html.TextBoxFor(m => m.Strain.Genotype, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Strain.Genotype)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Strain.Notes)
+        @Html.TextAreaFor(m => m.Strain.Notes, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Strain.Notes)
+    </div>
+}
