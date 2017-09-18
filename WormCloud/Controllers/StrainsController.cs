@@ -28,6 +28,40 @@ namespace WormCloud.Controllers
             return View("StrainForm", viewModel);
         }
 
+        public ActionResult Edit(int id)
+        {
+            var strain = _context.Strains.SingleOrDefault(m => m.Id == id);
+            if (strain == null)
+                return HttpNotFound();
+            var viewModel = new StrainFormViewModel(strain, _context.Species.ToList());
+            return View("StrainForm", viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Strain strain)
+        {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new StrainFormViewModel(strain, _context.Species.ToList());
+                return View("StrainForm", viewModel);
+            }
+            if (strain.Id == 0)
+            {
+                _context.Strains.Add(strain);
+            }
+            else
+            {
+                var existingStrain = _context.Strains.Single(m => m.Id == strain.Id);
+                existingStrain.SpeciesId = strain.SpeciesId;
+                existingStrain.Name = strain.Name;
+                existingStrain.Genotype = strain.Genotype;
+                existingStrain.Notes = strain.Notes;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
         // GET /strains
         public ViewResult Index()
         {
