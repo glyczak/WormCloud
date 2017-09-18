@@ -29,4 +29,7 @@
         @Html.TextAreaFor(m => m.Strain.Notes, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Strain.Notes)
     </div>
+    @Html.HiddenFor(m => m.Strain.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save</button>
 }
