@@ -20,6 +20,8 @@ namespace WormCloud.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Sample> Samples { get; set; }
+        public DbSet<Strain> Strains { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
