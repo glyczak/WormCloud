@@ -21,7 +21,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Strain.Genotype)
-        @Html.TextBoxFor(m => m.Strain.Genotype, new { @class = "form-control" })
+        @Html.TextAreaFor(m => m.Strain.Genotype, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Strain.Genotype)
     </div>
     <div class="form-group">
@@ -32,4 +32,9 @@
     @Html.HiddenFor(m => m.Strain.Id)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
 }
