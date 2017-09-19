@@ -22,12 +22,14 @@ namespace WormCloud.Controllers
             _context.Dispose();
         }
 
+        // GET /strains/new
         public ViewResult New()
         {
             var viewModel = new StrainFormViewModel(_context.Species.ToList());
             return View("StrainForm", viewModel);
         }
 
+        // GET /strains/edit
         public ActionResult Edit(int id)
         {
             var strain = _context.Strains.SingleOrDefault(m => m.Id == id);
@@ -37,6 +39,7 @@ namespace WormCloud.Controllers
             return View("StrainForm", viewModel);
         }
 
+        // POST /strains/save
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Save(Strain strain)
