@@ -58,6 +58,7 @@ namespace WormCloud.Controllers
                 var existingStrain = _context.Strains.Single(m => m.Id == strain.Id);
                 existingStrain.SpeciesId = strain.SpeciesId;
                 existingStrain.Name = strain.Name;
+                existingStrain.Source = strain.Source;
                 existingStrain.Genotype = strain.Genotype;
                 existingStrain.Notes = strain.Notes;
             }

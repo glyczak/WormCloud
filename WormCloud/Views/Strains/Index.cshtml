@@ -6,3 +6,45 @@
 
 <h2>Strains</h2>
 
+<table id="strains" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Genotype</th>
+            <th>Source</th>
+            <th>Notes</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#strains").DataTable({
+                ajax: {
+                    url: "/api/strains/",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "name",
+                        render: function(data, type, strain) {
+                            return "<a href='/strains/edit/" + strain.id + "'>" + strain.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "genotype"
+                    },
+                    {
+                        data: "source"
+                    },
+                    {
+                        data: "notes"
+                    }
+                ]
+            });
+        });
+    </script>
+}

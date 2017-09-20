@@ -228,9 +228,13 @@
     <Compile Include="Migrations\201709172218141_AddedSpeciesStrainAndSampleModels.Designer.cs">
       <DependentUpon>201709172218141_AddedSpeciesStrainAndSampleModels.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709181924522_AddCElegansToSpecies.cs" />
-    <Compile Include="Migrations\201709181924522_AddCElegansToSpecies.Designer.cs">
-      <DependentUpon>201709181924522_AddCElegansToSpecies.cs</DependentUpon>
+    <Compile Include="Migrations\201709181924522_AddCelegansToSpecies.cs" />
+    <Compile Include="Migrations\201709181924522_AddCelegansToSpecies.Designer.cs">
+      <DependentUpon>201709181924522_AddCelegansToSpecies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709192358046_MovedSourceFromSampleToStrain.cs" />
+    <Compile Include="Migrations\201709192358046_MovedSourceFromSampleToStrain.Designer.cs">
+      <DependentUpon>201709192358046_MovedSourceFromSampleToStrain.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -565,8 +569,11 @@
     <EmbeddedResource Include="Migrations\201709172218141_AddedSpeciesStrainAndSampleModels.resx">
       <DependentUpon>201709172218141_AddedSpeciesStrainAndSampleModels.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709181924522_AddCElegansToSpecies.resx">
-      <DependentUpon>201709181924522_AddCElegansToSpecies.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201709181924522_AddCelegansToSpecies.resx">
+      <DependentUpon>201709181924522_AddCelegansToSpecies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709192358046_MovedSourceFromSampleToStrain.resx">
+      <DependentUpon>201709192358046_MovedSourceFromSampleToStrain.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

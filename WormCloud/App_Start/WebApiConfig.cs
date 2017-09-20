@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace WormCloud
 {
@@ -10,6 +12,9 @@ namespace WormCloud
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var serializerSettings = config.Formatters.JsonFormatter.SerializerSettings;
+            serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            serializerSettings.Formatting = Formatting.Indented;
 
             // Web API routes
             config.MapHttpAttributeRoutes();

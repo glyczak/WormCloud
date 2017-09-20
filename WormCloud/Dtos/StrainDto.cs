@@ -16,6 +16,8 @@ namespace WormCloud.Dtos
         [Required]
         public string Name { get; set; }
 
+        public string Source { get; set; }
+
         [Required]
         public string Genotype { get; set; }
 
