@@ -22,6 +22,8 @@ namespace WormCloud.Models
         [Required]
         public string Genotype { get; set; }
 
+        public string Source { get; set; }
+
         public string Notes { get; set; }
     }
 }

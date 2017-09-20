@@ -19,7 +19,7 @@ namespace WormCloud.Controllers.Api
         }
 
         // GET /api/strains
-        public IEnumerable<StrainDto> Index()
+        public IEnumerable<StrainDto> GetStrains()
         {
             return _context.Strains.ToList().Select(Mapper.Map<Strain, StrainDto>);
         }

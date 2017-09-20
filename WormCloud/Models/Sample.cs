@@ -13,8 +13,6 @@ namespace WormCloud.Models
 
         public int StrainId { get; set; }
 
-        public string CreatedBy { get; set; }
-
         public bool CheckedOut { get; set; }
 
         public string Notes { get; set; }
