@@ -61,3 +61,11 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+###############################################################################
+# ignoring directories for language checking
+#
+# all directories listed below will not be scanned
+###############################################################################
+WormCloud/Content/* linguist-vendored
+WormCloud/Scripts/* linguist-vendored
