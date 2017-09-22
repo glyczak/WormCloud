@@ -1,0 +1,35 @@
+﻿@model WormCloud.Models.Sample
+@{
+    ViewBag.Title = (Model.Id == 0) ? "New Sample" : ("Box " + Model.Box + ": " + Model.Location);
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Samples"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Box)
+        @Html.TextBoxFor(m => m.Box, new { @type = "number" })
+        @Html.ValidationMessageFor(m => m.Box)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Location)
+        @Html.TextBoxFor(m => m.Location)
+        @Html.ValidationMessageFor(m => m.Location)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Notes)
+        @Html.TextAreaFor(m => m.Notes)
+        @Html.ValidationMessageFor(m => m.Notes)
+    </div>
+    @Html.HiddenFor(m => m.Id)
+    @Html.Hidden("referrer", Request.UrlReferrer)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">Save Sample</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WormCloud.Models;
+using WormCloud.ViewModels;
 
 namespace WormCloud.Controllers
 {
@@ -19,6 +20,39 @@ namespace WormCloud.Controllers
         protected override void Dispose(bool disposing)
         {
             _context.Dispose();
+        }
+
+        // GET /samples/new?strainId={strainId}
+        public ActionResult New(int strainId)
+        {
+            var strain = _context.Strains.SingleOrDefault(m => m.Id == strainId);
+            if (strain == null)
+                return HttpNotFound();
+            var sample = new Sample
+            {
+                StrainId = strain.Id,
+                CheckedOut = false
+            };
+            return View("SamplesForm", sample);
+        }
+
+        // POST /samples
+        [HttpPost]
+        public ActionResult Save(Sample sample, string referrer)
+        {
+            if (!ModelState.IsValid)
+                return View("SamplesForm", sample);
+            if (sample.Id == 0)
+                _context.Samples.Add(sample);
+            else
+            {
+                var existingSample = _context.Samples.Single(m => m.Id == sample.Id);
+                existingSample.Box = sample.Box;
+                existingSample.Location = sample.Location;
+                existingSample.Notes = sample.Notes;
+            }
+            _context.SaveChanges();
+            return Redirect(referrer);
         }
 
         // GET /samples
