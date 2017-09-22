@@ -14,6 +14,9 @@ namespace WormCloud.App_Start
         {
             Mapper.CreateMap<Strain, StrainDto>();
             Mapper.CreateMap<StrainDto, Strain>();
+
+            Mapper.CreateMap<Sample, SampleDto>();
+            Mapper.CreateMap<SampleDto, Sample>();
         }
     }
 }
