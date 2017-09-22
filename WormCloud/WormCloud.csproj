@@ -236,6 +236,10 @@
     <Compile Include="Migrations\201709192358046_MovedSourceFromSampleToStrain.Designer.cs">
       <DependentUpon>201709192358046_MovedSourceFromSampleToStrain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709221704186_AddBoxAndLocationToSamples.cs" />
+    <Compile Include="Migrations\201709221704186_AddBoxAndLocationToSamples.Designer.cs">
+      <DependentUpon>201709221704186_AddBoxAndLocationToSamples.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -550,6 +554,7 @@
     <Content Include="Views\Strains\Index.cshtml" />
     <Content Include="Views\Samples\Index.cshtml" />
     <Content Include="Views\Strains\StrainForm.cshtml" />
+    <Content Include="Views\Samples\SamplesForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -574,6 +579,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709192358046_MovedSourceFromSampleToStrain.resx">
       <DependentUpon>201709192358046_MovedSourceFromSampleToStrain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709221704186_AddBoxAndLocationToSamples.resx">
+      <DependentUpon>201709221704186_AddBoxAndLocationToSamples.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
