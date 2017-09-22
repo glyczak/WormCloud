@@ -36,8 +36,17 @@ namespace WormCloud.Controllers
             return View("SamplesForm", sample);
         }
 
+        public ActionResult Edit(int id)
+        {
+            var sample = _context.Samples.SingleOrDefault(m => m.Id == id);
+            if (sample == null)
+                return HttpNotFound();
+            return View("SamplesForm", sample);
+        }
+
         // POST /samples
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Sample sample, string referrer)
         {
             if (!ModelState.IsValid)

@@ -22,6 +22,15 @@ namespace WormCloud.Controllers
             _context.Dispose();
         }
 
+        // GET /strains/view/{id}
+        public ActionResult View(int id)
+        {
+            var strain = _context.Strains.Include("Species").SingleOrDefault(m => m.Id == id);
+            if (strain == null)
+                return HttpNotFound();
+            return View(strain);
+        }
+
         // GET /strains/new
         public ViewResult New()
         {
@@ -42,7 +51,7 @@ namespace WormCloud.Controllers
         // POST /strains/save
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(Strain strain)
+        public ActionResult Save(Strain strain, string referrer)
         {
             if (!ModelState.IsValid)
             {
@@ -63,14 +72,13 @@ namespace WormCloud.Controllers
                 existingStrain.Notes = strain.Notes;
             }
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            return Redirect(referrer);
         }
 
         // GET /strains
         public ViewResult Index()
         {
-            var strains = _context.Strains.ToList();
-            return View(strains);
+            return View();
         }
     }
 }

@@ -211,11 +211,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\SamplesController.cs" />
     <Compile Include="Controllers\Api\StrainsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SamplesController.cs" />
     <Compile Include="Controllers\StrainsController.cs" />
+    <Compile Include="Dtos\SampleDto.cs" />
     <Compile Include="Dtos\StrainDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -555,6 +557,7 @@
     <Content Include="Views\Samples\Index.cshtml" />
     <Content Include="Views\Strains\StrainForm.cshtml" />
     <Content Include="Views\Samples\SamplesForm.cshtml" />
+    <Content Include="Views\Strains\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

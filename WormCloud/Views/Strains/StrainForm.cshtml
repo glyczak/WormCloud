@@ -36,16 +36,9 @@
         @Html.ValidationMessageFor(m => m.Strain.Notes)
     </div>
     @Html.HiddenFor(m => m.Strain.Id)
+    @Html.Hidden("referrer", Request.UrlReferrer)
     @Html.AntiForgeryToken()
     <button type="submit" class="btn btn-primary">Save Strain</button>
-}
-
-@if (Model.Strain.Id != 0)
-{
-    <p>
-        @Html.ActionLink("New Sample", "New", "Samples", 
-            new { strainId = Model.Strain.Id} , new { @class = "btn btn-secondary"})
-    </p>
 }
 
 @section scripts
