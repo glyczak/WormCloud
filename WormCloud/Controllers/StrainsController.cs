@@ -72,7 +72,13 @@ namespace WormCloud.Controllers
                 existingStrain.Notes = strain.Notes;
             }
             _context.SaveChanges();
-            return Redirect(referrer);
+            if (string.IsNullOrWhiteSpace(referrer))
+            {
+                return RedirectToAction("Index");
+            } else
+            {
+                return Redirect(referrer);
+            }
         }
 
         // GET /strains
