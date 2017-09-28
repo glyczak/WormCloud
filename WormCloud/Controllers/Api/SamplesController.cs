@@ -40,5 +40,28 @@ namespace WormCloud.Controllers.Api
             var samples = _context.Samples.Where(m => m.StrainId == strainId).Select(Mapper.Map<Sample, SampleDto>).ToList();
             return Ok(samples);
         }
+
+        // GET /api/samples/{id}/togglestatus
+        [System.Web.Http.HttpGet]
+        public void ToggleStatus(int id)
+        {
+            var sample = _context.Samples.SingleOrDefault(m => m.Id == id);
+            if (sample == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            sample.CheckedOut = !sample.CheckedOut;
+            _context.SaveChanges();
+        }
+
+        // DELETE /api/samples/{id}
+        public void DeleteSample(int id)
+        {
+            var existingSample = _context.Samples.SingleOrDefault(m => m.Id == id);
+
+            if (existingSample == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+
+            _context.Samples.Remove(existingSample);
+            _context.SaveChanges();
+        }
     }
 }

@@ -28,10 +28,31 @@
     @Html.HiddenFor(m => m.CheckedOut)
     @Html.Hidden("referrer", Request.UrlReferrer)
     @Html.AntiForgeryToken()
-    <button type="submit" class="btn btn-primary">Save Sample</button>
+    <div class="btn-group">
+        <button type="submit" class="btn btn-primary">Save Sample</button>
+        <a id="js-delete" class="btn btn-danger" data-sample-id="@Model.Id">Delete Sample</a>
+    </div>
 }
 
 @section scripts
 {
+<script>
+        $(document).ready(function () {
+            $("#js-delete").on("click", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this sample?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/samples/" + button.attr("data-sample-id"),
+                            method: "DELETE",
+                            success: function () {
+                                window.location.replace("/samples");
+                            }
+                        });
+                     }
+                });
+           });
+        });
+</script>
     @Scripts.Render("~/bundles/jqueryval")
 }
