@@ -20,6 +20,17 @@ namespace WormCloud
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "ToggleSampleStatus",
+                routeTemplate: "api/samples/{id}/togglestatus",
+                defaults: new
+                {
+                    controller = "Samples",
+                    action = "ToggleStatus",
+                    id = RouteParameter.Optional
+                }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
