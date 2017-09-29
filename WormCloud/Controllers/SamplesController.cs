@@ -23,6 +23,7 @@ namespace WormCloud.Controllers
         }
 
         // GET /samples/new?strainId={strainId}
+        [Authorize(Roles = RoleName.CanManageSamples)]
         public ActionResult New(int strainId)
         {
             var strain = _context.Strains.SingleOrDefault(m => m.Id == strainId);
@@ -36,6 +37,8 @@ namespace WormCloud.Controllers
             return View("SamplesForm", sample);
         }
 
+        // GET /samples/edit/{id}
+        [Authorize(Roles = RoleName.CanManageSamples)]
         public ActionResult Edit(int id)
         {
             var sample = _context.Samples.SingleOrDefault(m => m.Id == id);
@@ -44,9 +47,10 @@ namespace WormCloud.Controllers
             return View("SamplesForm", sample);
         }
 
-        // POST /samples
+        // POST /samples/save
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageSamples)]
         public ActionResult Save(Sample sample, string referrer)
         {
             if (!ModelState.IsValid)

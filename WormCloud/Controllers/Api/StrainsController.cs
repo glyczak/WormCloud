@@ -24,12 +24,14 @@ namespace WormCloud.Controllers.Api
         }
 
         // GET /api/strains
+        [AllowAnonymous]
         public IEnumerable<StrainDto> GetStrains()
         {
             return _context.Strains.ToList().Select(Mapper.Map<Strain, StrainDto>);
         }
 
         // GET /api/strains/{id}
+        [AllowAnonymous]
         public IHttpActionResult GetStrain(int id)
         {
             var strain = _context.Strains.SingleOrDefault(m => m.Id == id);

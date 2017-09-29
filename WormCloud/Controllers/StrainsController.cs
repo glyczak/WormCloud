@@ -32,13 +32,15 @@ namespace WormCloud.Controllers
         }
 
         // GET /strains/new
+        [Authorize(Roles = RoleName.CanManageStrains)]
         public ViewResult New()
         {
             var viewModel = new StrainFormViewModel(_context.Species.ToList());
             return View("StrainForm", viewModel);
         }
 
-        // GET /strains/edit
+        // GET /strains/edit/{id}
+        [Authorize(Roles = RoleName.CanManageStrains)]
         public ActionResult Edit(int id)
         {
             var strain = _context.Strains.SingleOrDefault(m => m.Id == id);
@@ -51,6 +53,7 @@ namespace WormCloud.Controllers
         // POST /strains/save
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageStrains)]
         public ActionResult Save(Strain strain, string referrer)
         {
             if (!ModelState.IsValid)
