@@ -242,10 +242,19 @@
     <Compile Include="Migrations\201709221704186_AddBoxAndLocationToSamples.Designer.cs">
       <DependentUpon>201709221704186_AddBoxAndLocationToSamples.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709291206201_AddNameToApplicationUser.cs" />
+    <Compile Include="Migrations\201709291206201_AddNameToApplicationUser.Designer.cs">
+      <DependentUpon>201709291206201_AddNameToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709291706077_SeedUsersAndRoles.cs" />
+    <Compile Include="Migrations\201709291706077_SeedUsersAndRoles.Designer.cs">
+      <DependentUpon>201709291706077_SeedUsersAndRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\RoleName.cs" />
     <Compile Include="Models\Sample.cs" />
     <Compile Include="Models\Species.cs" />
     <Compile Include="Models\Strain.cs" />
@@ -585,6 +594,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709221704186_AddBoxAndLocationToSamples.resx">
       <DependentUpon>201709221704186_AddBoxAndLocationToSamples.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709291206201_AddNameToApplicationUser.resx">
+      <DependentUpon>201709291206201_AddNameToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709291706077_SeedUsersAndRoles.resx">
+      <DependentUpon>201709291706077_SeedUsersAndRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
