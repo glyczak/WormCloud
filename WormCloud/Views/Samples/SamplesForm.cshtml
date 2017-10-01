@@ -30,7 +30,10 @@
     @Html.AntiForgeryToken()
     <div class="btn-group">
         <button type="submit" class="btn btn-primary">Save Sample</button>
-        <a id="js-delete" class="btn btn-danger" data-sample-id="@Model.Id">Delete Sample</a>
+        @if (Model.Id != 0)
+        {
+            <a id="js-delete" class="btn btn-danger" data-sample-id="@Model.Id">Delete Sample</a>
+        }
     </div>
 }
 
