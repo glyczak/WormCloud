@@ -9,6 +9,7 @@ using WormCloud.Models;
 
 namespace WormCloud.Controllers.Api
 {
+    [Authorize(Roles = RoleName.CanManageStrains)]
     public class StrainsController : ApiController
     {
         private ApplicationDbContext _context;
