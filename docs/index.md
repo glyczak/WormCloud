@@ -1,3 +1,6 @@
+---
+title: WormCloud
+---
 # WormCloud Strain Management Software
 ### General Information
 WormCloud is an open source project designed by [Gabe Lyczak](https://github.com/glyczak) for the [Ursinus College](https://www.ursinus.edu/) [Biology Department](https://www.ursinus.edu/academics/biology/research/).  The goal was to develop a piece of software that could be used by Ursinus staff and students to track the various strains of C. elegans worms used by the department for research purposes.
