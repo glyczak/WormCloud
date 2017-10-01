@@ -11,7 +11,9 @@ namespace WormCloud.Dtos
     {
         public int Id { get; set; }
 
-        public int StrainId { get; set; }
+        //public int StrainId { get; set; }
+
+        public StrainDto Strain { get; set; }
 
         public int Box { get; set; }
 

@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.Mvc;
 using AutoMapper;
 using WormCloud.Dtos;
 using WormCloud.Models;
@@ -26,12 +24,14 @@ namespace WormCloud.Controllers.Api
         }
 
         // GET /api/samples
+        [AllowAnonymous]
         public IEnumerable<SampleDto> GetSamples()
         {
-            return _context.Samples.ToList().Select(Mapper.Map<Sample, SampleDto>);
+            return _context.Samples.Include("Strain").ToList().Select(Mapper.Map<Sample, SampleDto>);
         }
 
         // GET /api/samples?strainId={strainId}
+        [AllowAnonymous]
         public IHttpActionResult GetSamples(int strainId)
         {
             var strain = _context.Strains.SingleOrDefault(m => m.Id == strainId);
@@ -42,7 +42,8 @@ namespace WormCloud.Controllers.Api
         }
 
         // GET /api/samples/{id}/togglestatus
-        [System.Web.Http.HttpGet]
+        [HttpGet]
+        [AllowAnonymous]
         public void ToggleStatus(int id)
         {
             var sample = _context.Samples.SingleOrDefault(m => m.Id == id);
@@ -53,6 +54,7 @@ namespace WormCloud.Controllers.Api
         }
 
         // DELETE /api/samples/{id}
+        [Authorize(Roles = RoleName.CanManageSamples)]
         public void DeleteSample(int id)
         {
             var existingSample = _context.Samples.SingleOrDefault(m => m.Id == id);

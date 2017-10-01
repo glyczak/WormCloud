@@ -7,12 +7,14 @@
 <h2>Samples</h2>
 
 <table id="samples" class="table table-bordered table-hover">
-    <thread>
-        <th>Name</th>
-        <th>Strain</th>
-        <th>Created By</th>
-        <th>Status</th>
-    </thread>
+    <thead>
+        <tr>
+            <th>Sample</th>
+            <th>Strain</th>
+            <th>Notes</th>
+            <th>Check In/Out</th>
+        </tr>
+    </thead>
     <tbody></tbody>
 </table>
 
@@ -20,12 +22,68 @@
 {
     <script>
         $(document).ready(function() {
-            $('#samples').DataTable({
+            var table = $("#samples").DataTable({
                 ajax: {
-                    url: "/api/samples/",
+                    url: "/api/samples",
                     dataSrc: ""
-                }
+                },
+                columns: [
+                    {
+                        data: "box",
+                        render: function(data, type, sample) {
+                            return "<a href='/samples/edit/" +
+                                sample.id +
+                                "'>Box " +
+                                sample.box +
+                                ": " +
+                                sample.location +
+                                "</a>";
+                        }
+                    },
+                    {
+                        data: "strain",
+                        render: function (data, type, sample) {
+                            return "<a href='/strains/view/" +
+                                sample.strain.id +
+                                "'>" +
+                                sample.strain.name +
+                                "</a>";
+                        }
+                    },
+                    {
+                        data: "notes"
+                    },
+                    {
+                        data: "checkedOut",
+                        render: function(data, type, sample) {
+                            if (sample.checkedOut) {
+                                return "<button class='btn-link js-toggle-status' data-sample-id='" +
+                                    sample.id +
+                                    "'>Check In</button>";
+                            } else {
+                                return "<button class='btn-link js-toggle-status' data-sample-id='" +
+                                    sample.id +
+                                    "'>Check Out</button>";
+                            }
+                        }
+                    }
+                ]
             });
+
+            $("#samples").on("click",
+                ".js-toggle-status",
+                function() {
+                    var button = $(this);
+                    $.ajax({
+                        url: "/api/samples/" + button.attr("data-sample-id") + "/togglestatus",
+                        method: "GET",
+                        success: function () {
+                            var cell = table.cell(button.parents("td"));
+                            cell.data(!cell.data());
+                            table.draw();
+                        }
+                    });
+                });
         });
     </script>
 }

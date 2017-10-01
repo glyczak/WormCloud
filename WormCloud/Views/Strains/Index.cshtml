@@ -8,15 +8,17 @@
 
 <table id="strains" class="table table-bordered table-hover">
     <thead>
-        <tr>
-            <th>Name</th>
-            <th>Genotype</th>
-            <th>Source</th>
-            <th>Notes</th>
-        </tr>
+    <tr>
+        <th>Name</th>
+        <th>Genotype</th>
+        <th>Source</th>
+        <th>Notes</th>
+    </tr>
     </thead>
     <tbody></tbody>
 </table>
+
+@Html.ActionLink("New Strain", "New", "Strains", new { @class = "btn btn-primary" })
 
 @section scripts
 {
