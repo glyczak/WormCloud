@@ -11,8 +11,10 @@
 {
     <div class="form-group">
         @Html.LabelFor(m => m.Strain.SpeciesId)
-        @Html.DropDownListFor(m => m.Strain.SpeciesId, new SelectList(Model.Species, "Id", "Name"),
-            "Select Species", new {@class = "form-control"})
+        <i>
+            @Html.DropDownListFor(m => m.Strain.SpeciesId, new SelectList(Model.Species, "Id", "Name"),
+                "Select Species", new {@class = "form-control"})
+        </i>
         @Html.ValidationMessageFor(m => m.Strain.SpeciesId)
     </div>
     <div class="form-group">
