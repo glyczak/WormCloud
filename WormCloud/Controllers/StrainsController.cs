@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.OleDb;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -88,6 +91,64 @@ namespace WormCloud.Controllers
         public ViewResult Index()
         {
             return View();
+        }
+
+        [HttpGet]
+        [Authorize(Roles = RoleName.CanManageStrains)]
+        public ActionResult Import()
+        {
+            return View(new List<string>());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageStrains)]
+        public ActionResult Import(HttpPostedFileBase file)
+        {
+            var model = new List<string>();
+            if (file.ContentLength > 0)
+            {
+                string filePath = Path.Combine(HttpContext.Server.MapPath("~/App_Data/Uploads"),
+                    Path.GetFileName(file.FileName));
+                file.SaveAs(filePath);
+                DataSet ds = new DataSet();
+
+                //A 32-bit provider which enables the use of
+
+                string ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filePath +
+                                          ";Extended Properties=Excel 12.0;";
+
+                using (OleDbConnection conn = new System.Data.OleDb.OleDbConnection(ConnectionString))
+                {
+                    conn.Open();
+                    using (DataTable dtExcelSchema = conn.GetSchema("Tables"))
+                    {
+                        string sheetName = dtExcelSchema.Rows[0]["TABLE_NAME"].ToString();
+                        string query = "SELECT * FROM [" + sheetName + "]";
+                        OleDbDataAdapter adapter = new OleDbDataAdapter(query, conn);
+                        //DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        if (ds.Tables.Count > 0)
+                        {
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                {
+                                    _context.Strains.Add(new Strain
+                                    {
+                                        SpeciesId = 1,
+                                        Name = ds.Tables[0].Rows[i].ItemArray[0].ToString(),
+                                        Genotype = ds.Tables[0].Rows[i].ItemArray[1].ToString()
+                                    });
+                                }
+                                _context.SaveChanges();
+                            }
+                        }
+                    }
+                }
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

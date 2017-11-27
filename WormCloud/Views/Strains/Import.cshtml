@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Import";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Import Excel Spreadsheet</h2>
+
+<div>
+    @using (Html.BeginForm("Import", "Strains", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div class="form-group">
+            <input name="file" type="file" />
+        </div>
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-primary" onclick="return CheckFileName();">
+            Import Spreadsheet
+        </button>
+    }
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        function CheckFileName() {
+            var fileName = document.getElementById("uploadFile").value
+            //debugger;
+            if (fileName == "") {
+                alert("Browse to upload a valid File with xls / xlsx extension");
+                return false;
+            }
+            else if (fileName.split(".")[1].toUpperCase() == "XLS" || fileName.split(".")[1].toUpperCase() == "XLSX")
+                return true;
+            else {
+                alert("Please upload a valid Excel spreadsheet.");
+                return false;
+            }
+            return true;
+        }
+    </script>
+}
